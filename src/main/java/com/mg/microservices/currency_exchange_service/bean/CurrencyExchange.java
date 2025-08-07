@@ -7,11 +7,13 @@ import java.math.BigDecimal;
  * Date: 8/7/2025
  * Time: 12:43 AM
  */
+
 public class CurrencyExchange {
     private Long id;
     private String from;
     private String to;
     private BigDecimal rate;
+    private String environment;
 
     public CurrencyExchange() {
     }
@@ -53,5 +55,13 @@ public class CurrencyExchange {
 
     public void setRate(BigDecimal rate) {
         this.rate = rate;
+    }
+
+    public String getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(String environment) {
+        this.environment = environment;
     }
 }
