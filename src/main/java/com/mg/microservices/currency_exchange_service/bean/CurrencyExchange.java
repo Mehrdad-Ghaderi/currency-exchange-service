@@ -24,7 +24,9 @@ public class CurrencyExchange {
     @Column(name = "currency_to")
     private String to;
     private BigDecimal rate;
-    private String environment;
+
+    //@Column(name = "server_environment")
+    private String serverEnvironment;
 
     public CurrencyExchange() {
     }
@@ -68,11 +70,11 @@ public class CurrencyExchange {
         this.rate = rate;
     }
 
-    public String getEnvironment() {
-        return environment;
+    public String getServerEnvironment() {
+        return serverEnvironment;
     }
 
-    public void setEnvironment(String environment) {
-        this.environment = environment;
+    public void setServerEnvironment(String environment) {
+        this.serverEnvironment = environment;
     }
 }

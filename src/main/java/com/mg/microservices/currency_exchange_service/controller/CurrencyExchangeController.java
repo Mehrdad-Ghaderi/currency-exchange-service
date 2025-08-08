@@ -1,13 +1,17 @@
 package com.mg.microservices.currency_exchange_service.controller;
 
 import com.mg.microservices.currency_exchange_service.bean.CurrencyExchange;
+import com.mg.microservices.currency_exchange_service.exception.CurrencyPairNotFoundException;
 import com.mg.microservices.currency_exchange_service.repository.CurrencyExchangeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -15,7 +19,9 @@ import java.util.Optional;
  * Date: 8/7/2025
  * Time: 12:40 AM
  */
+@Slf4j
 @RestController
+@RequestMapping("/api/v1")
 public class CurrencyExchangeController {
 
     private final Environment environment;
@@ -27,17 +33,17 @@ public class CurrencyExchangeController {
     }
 
     @GetMapping("currency-exchange/from/{from}/to/{to}")
-    public CurrencyExchange getExchangeValue(@PathVariable("from") String from,
+    public CurrencyExchange getCurrencyExchangePair(@PathVariable("from") String from,
                                              @PathVariable("to") String to) {
 
-        Optional<CurrencyExchange> foundPair = repository.findByFromAndTo(from, to);
-        if (foundPair.isEmpty()) {
-            throw new RuntimeException("Pair " + from + " to " + to + " was not found");
-        }
-        String port = environment.getProperty("local.server.port");
-        CurrencyExchange currencyExchange = foundPair.get();
-        currencyExchange.setEnvironment(port);
-        return currencyExchange;
+        log.info("Fetching exchange rate from {} to {}", from, to);
+
+        return repository.findByFromAndToIgnoreCase(from, to)
+                .map(exchange -> {
+                    exchange.setServerEnvironment(environment.getProperty("local.server.port"));
+                    return exchange;
+                })
+                .orElseThrow(() -> new CurrencyPairNotFoundException(from, to));
     }
 
 }
