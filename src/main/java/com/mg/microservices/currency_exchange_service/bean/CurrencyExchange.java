@@ -3,6 +3,10 @@ package com.mg.microservices.currency_exchange_service.bean;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -12,6 +16,10 @@ import java.math.BigDecimal;
  * Time: 12:43 AM
  */
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class CurrencyExchange {
 
@@ -25,56 +33,5 @@ public class CurrencyExchange {
     private String to;
     private BigDecimal rate;
 
-    //@Column(name = "server_environment")
     private String serverEnvironment;
-
-    public CurrencyExchange() {
-    }
-
-    public CurrencyExchange(Long id, String from, String to, BigDecimal rate) {
-        this.id = id;
-        this.from = from;
-        this.to = to;
-        this.rate = rate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public BigDecimal getRate() {
-        return rate;
-    }
-
-    public void setRate(BigDecimal rate) {
-        this.rate = rate;
-    }
-
-    public String getServerEnvironment() {
-        return serverEnvironment;
-    }
-
-    public void setServerEnvironment(String environment) {
-        this.serverEnvironment = environment;
-    }
 }

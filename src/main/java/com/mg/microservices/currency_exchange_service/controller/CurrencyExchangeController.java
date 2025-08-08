@@ -5,14 +5,11 @@ import com.mg.microservices.currency_exchange_service.exception.CurrencyPairNotF
 import com.mg.microservices.currency_exchange_service.repository.CurrencyExchangeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 
 /**
  * Created by Mehrdad Ghaderi, S&M
