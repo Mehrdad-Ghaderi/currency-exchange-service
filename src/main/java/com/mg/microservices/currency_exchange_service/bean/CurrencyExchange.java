@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Created by Mehrdad Ghaderi, S&M
@@ -32,6 +33,6 @@ public class CurrencyExchange {
     @Column(name = "currency_to")
     private String to;
     private BigDecimal rate;
-
+    private LocalDate date;
     private String serverEnvironment;
 }
