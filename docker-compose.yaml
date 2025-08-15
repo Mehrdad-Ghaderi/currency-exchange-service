@@ -1,0 +1,34 @@
+version: '2.39.2'
+
+services:
+  currency-exchange:
+    image: mehrdadghaderi/msv1-currency-exchange-service:0.0.1-SNAPSHOT
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      "EUREKA.CLIENT.SERVICEURL.DEFAULTZONE": "http://naming-server:8761/eureka"
+
+  currency-conversion:
+    image: mehrdadghaderi/msv1-currency-conversion-service:0.0.1-SNAPSHOT
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      "EUREKA.CLIENT.SERVICEURL.DEFAULTZONE": "http://naming-server:8761/eureka"
+
+  naming-server:
+    image: mehrdadghaderi/msv1-currency-exchange-service:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+networks:
+  currency-network:
