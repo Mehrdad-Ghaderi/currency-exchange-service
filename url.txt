@@ -1,6 +1,7 @@
 Currency Exchange Service:
 http://localhost:8000/api/v1/currency-exchange/from/USD/to/CAD
 
+
 Currency Conversion Service:
 http://localhost:8100/api/v1/currency-conversion/from/USD/to/CAD/quantity/10
 http://localhost:8100/api/v1/currency-conversion-feign/from/USD/to/CAD/quantity/10
@@ -15,6 +16,6 @@ http://localhost:8765/currency-conversion/api/v1/currency-conversion/from/USD/to
 http://localhost:8765/currency-conversion/api/v1/currency-conversion-feign/from/USD/to/CAD/quantity/10
 
 redirected
+http://localhost:8765/api/v1/currency-exchange/from/USD/to/CAD
 http://localhost:8765/api/v1/currency-conversion/from/USD/to/CAD/quantity/5
 http://localhost:8765/api/v1/currency-conversion-feign/from/USD/to/CAD/quantity/6
-http://localhost:8765/api/v1/currency-exchange/from/USD/to/CAD

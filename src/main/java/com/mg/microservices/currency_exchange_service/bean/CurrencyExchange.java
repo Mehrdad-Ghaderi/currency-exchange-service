@@ -1,5 +1,6 @@
 package com.mg.microservices.currency_exchange_service.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,6 +25,7 @@ import java.time.LocalDate;
 @Entity
 public class CurrencyExchange {
 
+    @JsonIgnore
     @Id
     private Long id;
 
